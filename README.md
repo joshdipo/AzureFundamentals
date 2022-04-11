@@ -64,6 +64,26 @@
   - [Azure IoT Central](#azure-iot-central)
   - [Azure Sphere](#azure-sphere)
 - [Choose the best AI service for your needs](#choose-the-best-ai-service-for-your-needs)
+  - [Azure Machine Learning](#azure-machine-learning)
+  - [Azure Cognitive Services](#azure-cognitive-services)
+  - [Azure Bot Service](#azure-bot-service)
+- [Choose the best Azure serverless technology for your business scenario](#choose-the-best-azure-serverless-technology-for-your-business-scenario)
+  - [Azure Functions](#azure-functions-2)
+  - [Azure Logic Apps](#azure-logic-apps-1)
+- [Choose the best tools to help organizations build better solutions](#choose-the-best-tools-to-help-organizations-build-better-solutions)
+  - [Azure DevOps Services](#azure-devops-services)
+  - [GitHub and GitHub Actions](#github-and-github-actions)
+  - [Azure DevTest Labs](#azure-devtest-labs)
+- [Choose the best tools for managing and configuring your Azure environment](#choose-the-best-tools-for-managing-and-configuring-your-azure-environment)
+  - [Azure Portal](#azure-portal-1)
+  - [Azure Mobile App](#azure-mobile-app)
+  - [Azure PowerShell](#azure-powershell)
+  - [Azure CLI](#azure-cli)
+  - [Azure Resource Manager (ARM) templates](#azure-resource-manager-arm-templates)
+- [Choose the best monitoring service for visibility, insight, and outage mitigation](#choose-the-best-monitoring-service-for-visibility-insight-and-outage-mitigation)
+  - [Azure Advisor](#azure-advisor)
+  - [Azure Monitor](#azure-monitor)
+  - [Azure Service Health](#azure-service-health)
 
 ---
 
@@ -651,3 +671,191 @@ Azure Sphere creates an end-to-end, highly secure IoT solution for customers tha
 
 # Choose the best AI service for your needs
 
+## Azure Machine Learning
+
+- Azure Machine Learning is a platform for making predictions
+- It consists of tools and services that allow you to connect to data to train and test models to find one that will most accurately predict a future result
+- After you've run experiments to test the model, you can deploy and use it in real time via a web API endpoint
+
+With Azure Machine Learning, you can:
+
+- Create a process that defines how to obtain data, how to handle missing or bad data, how to split the data into either a training set or test set, and deliver the data to the training process.
+- Train and evaluate predictive models by using tools and programming languages familiar to data scientists.
+- Create pipelines that define where and when to run the compute-intensive experiments that are required to score the algorithms based on the training and test data.
+- Deploy the best-performing algorithm as an API to an endpoint so it can be consumed in real time by other applications.
+
+## Azure Cognitive Services
+
+- Provides prebuilt machine learning models that enable applications to see, hear, speak, understand, and even begin to reason
+- Use Azure Cognitive Services to solve general problems, such as analyzing text for emotional sentiment or analyzing images to recognize objects or faces
+- Provides predominantly pretrained models
+
+Azure Cognitive Services can be divided into the following categories:
+
+- Language services: Allow your apps to process natural language with prebuilt scripts, evaluate sentiment, and learn how to recognize what users want.
+- Speech services: Convert speech into text and text into natural-sounding speech. - - Translate from one language to another and enable speaker verification and recognition.
+- Vision services: Add recognition and identification capabilities when you're analyzing pictures, videos, and other visual content.
+- Decision services: Add personalized recommendations for each user that automatically improve each time they're used, moderate content to monitor and remove offensive or risky content, and detect abnormalities in your time series data.
+
+## Azure Bot Service
+
+- Azure Bot Service and Bot Framework are platforms for creating virtual agents that understand and reply to questions just like a human
+- It creates a virtual agent that can intelligently communicate with humans
+- Bots can be used to shift simple, repetitive tasks, such as taking a dinner reservation or gathering profile information, on to automated systems that might no longer require direct human intervention
+- Users converse with a bot by using text, interactive cards, and speech
+
+---
+
+# Choose the best Azure serverless technology for your business scenario
+
+- Serverless computing is a term used to describe an execution environment that's set up and managed for you
+- You merely specify what you want to happen by writing code or connecting and configuring components in a visual editor, and then specify the actions that trigger your functionality, such as a timer or an HTTP request
+- You never have to worry about an outage, your code can scale instantly to meet demand, and you pay based only on the actual usage of your code
+
+## Azure Functions
+
+- You can host a single method or function by using a popular programming language in the cloud that runs in response to an event
+- An example of an event might be an HTTP request, a new message on a queue, or a message on a timer
+- An Azure function is a stateless environment. A function behaves as if it's restarted every time it responds to an event. This feature is ideal for processing incoming data
+- And if state is required, the function can be connected to an Azure storage account
+
+A serverless compute service
+
+## Azure Logic Apps
+
+- Logic Apps is a low-code/no-code development platform hosted as a cloud service
+- Helps you automate and orchestrate tasks, business processes, and workflows when you need to integrate apps, data, systems, and services across enterprises or organizations
+- Azure Logic Apps is designed in a web-based designer and can execute logic that's triggered by Azure services without writing any code
+  - You build an app by linking triggers to actions with connectors
+  -  trigger is an event (such as a timer) that causes an app to execute, then a new message to be sent to a queue, or an HTTP request. An action is a task or step that can execute
+  -  There are logic actions such as those you would find in most programming languages. Examples of actions include working with variables, decision statements and loops, and tasks that parse and modify data
+- If you can't find the action or connector you need, you can build your own by using custom code
+
+A serverless orchestration service
+
+---
+
+# Choose the best tools to help organizations build better solutions
+
+## Azure DevOps Services
+
+Azure DevOps Services is a suite of services that address every stage of the software development lifecycle.
+
+- Azure Repos is a centralized source-code repository where software development DevOps engineering, and documentation professionals can publish their code for review and collaboration.
+- Azure Boards is an agile project management suite that includes Kanban boards, reporting, and tracking ideas and work from high-level epics to work items and issues.
+- Azure Pipelines is a CI/CD pipeline automation tool.
+- Azure Artifacts is a repository for hosting artifacts, such as compiled source code, which can be fed into testing or deployment pipeline steps.
+- Azure Test Plans is an automated test tool that can be used in a CI/CD pipeline to ensure quality before a software release.
+
+## GitHub and GitHub Actions
+
+Git is a decentralized source-code management tool, and GitHub is a hosted version of Git that serves as the primary remote
+
+- It's a shared source-code repository, including tools that enable developers to perform code reviews by adding comments and questions in a web view of the source code before it can be merged into the main code base
+- It facilitates project management, including Kanban boards
+- It supports issue reporting, discussion, and tracking
+- It features CI/CD pipeline automation tooling
+- It includes a wiki for collaborative documentation
+- It can be run from the cloud or on-premises
+
+GitHub Actions enables workflow automation with triggers for many lifecycle events. One such example would be automating a CI/CD toolchain
+
+    A toolchain is a combination of software tools that aid in the delivery, development, and management of software applications throughout a system's development lifecycle. The output of one tool in the toolchain is the input of the next tool in the toolchain. Typical tool functions range from performing automated dependency updates to building and configuring the software, delivering the build artifacts to various locations, testing, and so on.
+
+## Azure DevTest Labs
+
+Azure DevTest Labs provides an automated means of managing the process of building, setting up, and tearing down virtual machines (VMs) that contain builds of your software projects
+
+- Developers and testers can perform tests across a variety of environments and builds
+- Not limited to VMs
+  - Anything you can deploy in Azure via an ARM template can be provisioned through DevTest Labs
+
+---
+
+# Choose the best tools for managing and configuring your Azure environment
+
+## Azure Portal
+
+- Using the Azure portal, a web-based user interface, you can access virtually every feature of Azure
+- The Azure portal provides a friendly, graphical UI to view all the services you're using, create new services, configure your services, and view reports
+
+## Azure Mobile App
+
+The Azure mobile app provides iOS and Android access to your Azure resources when you're away from your computer. With it, you can:
+
+- Monitor the health and status of your Azure resources.
+- Check for alerts, quickly diagnose and fix issues, and restart a web app or virtual machine (VM).
+- Run the Azure CLI or Azure PowerShell commands to manage your Azure resources.
+
+## Azure PowerShell
+
+Uses Powershell
+
+Azure PowerShell is a shell with which developers and DevOps and IT professionals can execute commands called cmdlets (pronounced command-lets). These commands call the Azure Rest API to perform every possible management task in Azure. Cmdlets can be executed independently or combined into a script file and executed together to orchestrate:
+
+- The routine setup, teardown, and maintenance of a single resource or multiple connected resources.
+- The deployment of an entire infrastructure, which might contain dozens or hundreds of resources, from imperative code.
+
+Capturing the commands in a script makes the process repeatable and automatable.
+
+## Azure CLI
+
+Uses Bash
+
+- The Azure CLI command-line interface is an executable program with which a developer, DevOps professional, or IT professional can execute commands in Bash
+- The commands call the Azure Rest API to perform every possible management task in Azure
+- You can run the commands independently or combined into a script and executed together for the routine setup, teardown, and maintenance of a single resource or an entire environment
+
+## Azure Resource Manager (ARM) templates
+
+By using Azure Resource Manager templates (ARM templates), you can describe the resources you want to use in a declarative JSON format. The benefit is that the entire ARM template is verified before any code is executed to ensure that the resources will be created and connected correctly. The template then orchestrates the creation of those resources in parallel. That is, if you need 50 instances of the same resource, all 50 instances are created at the same time.
+
+---
+
+# Choose the best monitoring service for visibility, insight, and outage mitigation
+
+## Azure Advisor
+
+Azure Advisor evaluates your Azure resources and makes recommendations to help improve reliability, security, and performance, achieve operational excellence, and reduce costs
+
+When you're in the Azure portal, the Advisor dashboard displays personalized recommendations for all your subscriptions, and you can use filters to select recommendations for specific subscriptions, resource groups, or services. The recommendations are divided into five categories:
+
+- Reliability: Used to ensure and improve the continuity of your business-critical applications.
+- Security: Used to detect threats and vulnerabilities that might lead to security breaches.
+- Performance: Used to improve the speed of your applications.
+- Cost: Used to optimize and reduce your overall Azure spending.
+- Operational Excellence: Used to help you achieve process and workflow efficiency, resource manageability, and deployment best practices.
+
+## Azure Monitor
+
+Azure Monitor is a platform for collecting, analyzing, visualizing, and potentially taking action based on the metric and logging data from your entire Azure and on-premises environment.
+
+<br>
+
+The following diagram illustrates just how comprehensive Azure Monitor is.
+
+![image](images/Azure-monitor.png)
+
+- On the left is a list of the sources of logging and metric data that can be collected at every layer in your application architecture, from application to operating system and network.
+
+- In the center, you can see how the logging and metric data is stored in central repositories.
+
+- On the right, the data is used in a number of ways. You can view real-time and historical performance across each layer of your architecture, or aggregated and detailed information. The data is displayed at different levels for different audiences. You can view high-level reports on the Azure Monitor Dashboard or create custom views by using Power BI and Kusto queries.
+
+Additionally, you can use the data to help you react to critical events in real time, through alerts delivered to teams via SMS, email, and so on. Or you can use thresholds to trigger autoscaling functionality to scale up or down to meet the demand.
+
+## Azure Service Health
+
+Azure Service Health provides a personalized view of the health of the Azure services, regions, and resources you rely on
+
+- Azure Service Health displays both major and smaller, localized issues that affect you
+- You can set up alerts that help you triage outages and planned maintenance
+- After an outage, Service Health provides official incident reports, called root cause analyses (RCAs), which you can share with stakeholders
+
+Service Health helps you keep an eye on several event types:
+
+- Service issues are problems in Azure, such as outages, that affect you right now. You can drill down to the affected services, regions, updates from your engineering teams, and find ways to share and track the latest information.
+
+- Planned maintenance events can affect your availability. You can drill down to the affected services, regions, and details to show how an event will affect you and what you need to do. Most of these events occur without any impact to you and aren't shown here. In the rare case that a reboot is required, Service Health allows you to choose when to perform the maintenance to minimize the downtime.
+
+- Health advisories are issues that require you to act to avoid service interruption, including service retirements and breaking changes. Health advisories are announced far in advance to allow you to plan.
