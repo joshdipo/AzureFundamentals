@@ -912,4 +912,35 @@ Azure Sentinel is a cloud-based SIEM (Security Information and Event Managment) 
 
 ### Capabilities
 
-- 
+- Collect cloud data at scale Collect data across all users, devices, applications, and infrastructure, both on-premises and from multiple clouds.
+- Detect previously undetected threats Minimize false positives by using Microsoft's comprehensive analytics and threat intelligence.
+- Investigate threats with artificial intelligence Examine suspicious activities at scale, tapping into years of cybersecurity experience from Microsoft.
+- Respond to incidents rapidly Use built-in orchestration and automation of common tasks.
+
+### Data sources
+
+Azure Sentinel supports a number of data sources, which it can analyze for security events. These connections are handled by built-in connectors or industry-standard log formats and APIs.
+
+- Connect Microsoft solutions Connectors provide real-time integration for services like Microsoft Threat Protection solutions, Microsoft 365 sources (including Office 365), Azure Active Directory, and Windows Defender Firewall.
+- Connect other services and solutions Connectors are available for common non-Microsoft services and solutions, including AWS CloudTrail, Citrix Analytics (Security), Sophos XG Firewall, VMware Carbon Black Cloud, and Okta SSO.
+- Connect industry-standard data sources Azure Sentinel supports data from other sources that use the Common Event Format (CEF) messaging standard, Syslog, or REST API.
+
+### Detect threats
+
+Using Built in analytics:
+
+- Templates designed by Microsoft's team of security experts and analysts based on known threats, common attack vectors, and escalation chains for suspicious activity
+- Templates can be customised
+- Some templates use machin learning behavioral analytics that are based on Mircosoft proprietary algorithms
+
+Using custom analytics:
+
+- Rules that you can create to search for a specific criteria within your environment
+-  You can preview the number of results that the query would generate (based on past log events) and set a schedule for the query to run
+-  You can also set an alert threshold
+
+### Investigate and respond
+
+Using the `Investigation graph` you can review information from entities directly connected to an alert, and see common exploration queries to help guide the investigation.
+
+![image](https://docs.microsoft.com/en-us/learn/azure-fundamentals/protect-against-security-threats-azure/media/3-investigate-incidents-54765923.png)
