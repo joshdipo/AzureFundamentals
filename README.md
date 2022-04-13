@@ -905,3 +905,11 @@ You can:
 - Use an automated response with a `Workflow Automation`
 
 `Workflow automation` uses `Azure Logic Apps` and `Security Center connectors`. The Logic app can be triggered by a threat detection alert or by a Security center recommendation, filtered by name or by severity. You can then configure the logic app to run an action, such as sending an email, or posting a message to a Microsoft Teams channel.
+
+## Azure Sentinel
+
+Azure Sentinel is a cloud-based SIEM (Security Information and Event Managment) system. A SIEM system aggregates security data from many different sources (as long as those sources support an open-stadard loggin format). It also provides capabilities for threat detection and response.
+
+### Capabilities
+
+- 
