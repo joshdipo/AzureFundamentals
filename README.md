@@ -859,3 +859,49 @@ Service Health helps you keep an eye on several event types:
 - Planned maintenance events can affect your availability. You can drill down to the affected services, regions, and details to show how an event will affect you and what you need to do. Most of these events occur without any impact to you and aren't shown here. In the rare case that a reboot is required, Service Health allows you to choose when to perform the maintenance to minimize the downtime.
 
 - Health advisories are issues that require you to act to avoid service interruption, including service retirements and breaking changes. Health advisories are announced far in advance to allow you to plan.
+
+---
+
+# Protect against threats on Azure
+
+## Azure Security Center
+
+Azure Security Center is a monitoring service that provides visibility of your security posture across all of your services, both Azure and on-premises. The term security posture refers to cybersecurity policies and controls, as well as how well you can predict, prevent, and respond to security threats.
+
+Security Center can:
+
+- Monitor security settings across on-premises and cloud workloads.
+- Automatically apply required security settings to new resources as they come online.
+- Provide security recommendations that are based on your current configurations, resources, and networks.
+- Continuously monitor your resources and perform automatic security assessments to identify potential vulnerabilities before those vulnerabilities can be exploited.
+- Use machine learning to detect and block malware from being installed on your virtual machines (VMs) and other resources. You can also use adaptive application controls to define rules that list allowed applications to ensure that only applications you allow can run.
+- Detect and analyze potential inbound attacks and investigate threats and any post-breach activity that might have occurred.
+- Provide just-in-time access control for network ports. Doing so reduces your attack surface by ensuring that the network only allows traffic that you require at the time that you need it to.
+
+### Secure score
+
+A measurement of an organisations security posture
+
+- It is based on the percentage of security controls that you satisfy
+- Score improves when you remediate all of the recomendations for a single resource within a control
+- Helps tcompare with benchmarks and establish key performance indicators (KPIs)
+
+### Features
+
+- Just-in-time VM access: Blocks traffic by default to specific network ports, but allows traffic for a specfic time when an admin requests and approves it.
+- Adaptive application controls: Security center uses machine learning to look at the processes running on a VM and it creates exception rules for each resource group that holds the VMs and provides recommendations. Also provides alerts that inform the company about unauthorised applications that are running on its VMs.
+- Adaptive network hardening: Security center can monitor the internet traffic patterns of the VMs, and compare those patterns with the company's current network security group (NSG) settings. Security center can then make recomendations about whether the NSGs should be locked down further and provide remediation steps.
+- File integrity monitoring: Security center can configure the monitoring of changes to important files on both Windows and Linux, registry settings, applications, and other aspects that might indicate a security attack.
+
+### Responding to security alerts
+
+Security center can be used to get a centralised view of all security alerts. 
+
+You can:
+
+- Dismiss false alerts
+- Investigate alerts further
+- Remediate alerts manually
+- Use an automated response with a `Workflow Automation`
+
+`Workflow automation` uses `Azure Logic Apps` and `Security Center connectors`. The Logic app can be triggered by a threat detection alert or by a Security center recommendation, filtered by name or by severity. You can then configure the logic app to run an action, such as sending an email, or posting a message to a Microsoft Teams channel.
