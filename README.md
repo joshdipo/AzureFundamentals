@@ -119,6 +119,50 @@
     - [What is Active Directory?](#what-is-active-directory)
     - [What is Azure Active Directory?](#what-is-azure-active-directory)
     - [What services does Azure AD provide?](#what-services-does-azure-ad-provide)
+    - [What kinds of resources can Azure AD help secure?](#what-kinds-of-resources-can-azure-ad-help-secure)
+    - [What is single sign-on?](#what-is-single-sign-on)
+    - [Connecting On-prem AD with Azure AD](#connecting-on-prem-ad-with-azure-ad)
+  - [Multifactor authentication and Conditional Access](#multifactor-authentication-and-conditional-access)
+    - [Multifactor authentication](#multifactor-authentication)
+      - [What is Multifactor](#what-is-multifactor)
+      - [Azure AD Multi-factor Authentication](#azure-ad-multi-factor-authentication)
+    - [Conditional Access](#conditional-access)
+      - [What is Conditional Access?](#what-is-conditional-access)
+      - [When to use Conditional Access](#when-to-use-conditional-access)
+      - [Where is Conditional Access available?](#where-is-conditional-access-available)
+- [Build a cloud governance strategy on Azure](#build-a-cloud-governance-strategy-on-azure)
+  - [Azure role-based access control](#azure-role-based-access-control)
+    - [How is role-based access control applied to resources?](#how-is-role-based-access-control-applied-to-resources)
+    - [When should RBAC be used?](#when-should-rbac-be-used)
+    - [How is Azure RBAC enforced?](#how-is-azure-rbac-enforced)
+    - [Who does Azure RBAC apply to?](#who-does-azure-rbac-apply-to)
+    - [How do I manage Azure RBAC permissions?](#how-do-i-manage-azure-rbac-permissions)
+  - [Resource locks](#resource-locks)
+    - [Managing resource locks](#managing-resource-locks)
+    - [Locking levels](#locking-levels)
+    - [Deleting or changing a locked resource](#deleting-or-changing-a-locked-resource)
+    - [Combining resource locks with Azure Blueprints](#combining-resource-locks-with-azure-blueprints)
+  - [Organising resources by using tags](#organising-resources-by-using-tags)
+    - [Tag Usage](#tag-usage)
+    - [Managing tags](#managing-tags)
+  - [Azure Policy](#azure-policy)
+    - [Azure Policy in action](#azure-policy-in-action)
+    - [Azure Policy initiatives](#azure-policy-initiatives)
+  - [Azure Blueprints](#azure-blueprints)
+  - [Cloud Adoption Framework for Azure](#cloud-adoption-framework-for-azure)
+  - [Create a subscription governance strategy](#create-a-subscription-governance-strategy)
+    - [Billing](#billing)
+    - [Access control](#access-control)
+    - [Subscription limits](#subscription-limits)
+- [Examine privacy, compliance, and data protection standards on Azure](#examine-privacy-compliance-and-data-protection-standards-on-azure)
+- [Describe Azure cost management and service level agreements](#describe-azure-cost-management-and-service-level-agreements)
+  - [Plan and manage your Azure costs](#plan-and-manage-your-azure-costs)
+    - [Compare costs by using the Total Cost of Ownership Calculator](#compare-costs-by-using-the-total-cost-of-ownership-calculator)
+      - [How does the TCO Calculator work?](#how-does-the-tco-calculator-work)
+    - [Purchase Azure services](#purchase-azure-services)
+      - [Types of Azure services](#types-of-azure-services)
+      - [Factors that affect cost](#factors-that-affect-cost)
+      - [Estimate workload cost by using the pricing calculator](#estimate-workload-cost-by-using-the-pricing-calculator)
 
 ---
 
@@ -943,7 +987,7 @@ You can:
 
 ## Azure Sentinel
 
-Azure Sentinel is a cloud-based SIEM (Security Information and Event Managment) system. A SIEM system aggregates security data from many different sources (as long as those sources support an open-stadard loggin format). It also provides capabilities for threat detection and response.
+Azure Sentinel is a cloud-based SIEM (Security Information and Event Management) system. A SIEM system aggregates security data from many different sources (as long as those sources support an open-stadard loggin format). It also provides capabilities for threat detection and response.
 
 ### Capabilities
 
@@ -1190,11 +1234,11 @@ The identification card represents credentials that the user has to prove their 
 
 ### What is Active Directory?
 
-Gives organisations the ablility to manage on-premises infrastructure components and systems by using a single identity per user. Provides an identity and access managment service thats managed by your own organisation.
+Gives organisations the ablility to manage on-premises infrastructure components and systems by using a single identity per user. Provides an identity and access management service thats managed by your own organisation.
 
 ### What is Azure Active Directory?
 
-Microsofts cloud-based identity and access managment service. With Azure AD, you can control the identity accounts, but Microsoft ensures that the service is available globally.
+Microsofts cloud-based identity and access management service. With Azure AD, you can control the identity accounts, but Microsoft ensures that the service is available globally.
 
 Azure AD is for:
 
@@ -1219,4 +1263,384 @@ Authentication
 Single sign-on (SSO)
 
 - Enables you to remember only one username and one password to access multiple applications
-- A single identity is tied to a user
+- A single identity is tied to a user, simplifying the security model
+- As users change roles or leave an organization, access modifications are tied to that identity, which greatly reduces the effort needed to change or disable accounts
+
+Application management
+
+- You can manage your cloud and on-premises apps by using Azure AD. Features like Application Proxy, SaaS apps, the My Apps portal (also called the access panel), and single sign-on provide a better user experience.
+
+Device management
+
+- Along with accounts for individual people, Azure AD supports the registration of devices
+- This enables devices to be managed through tools like Microsoft Intune
+- Also allows for device-based Conditional Access policies to restrict access attempts to only those coming from known devices, regardless of the requesting user account
+
+### What kinds of resources can Azure AD help secure?
+
+- External
+  - Microsoft Office 365
+  - Azure Portal
+  - Other SaaS applications
+- Internal
+  - Corporate Network and intranet
+  - Any cloud applications developed within own organisation
+
+### What is single sign-on?
+
+Single sign-on enables a user to sign in one time and use that credential to access multiple resources and applications from different providers.
+
+More identities mean more passwords to remember and change. Password policies can vary among applications. As complexity requirements increase, it becomes increasingly difficult for users to remember them. The more passwords a user has to manage, the greater the risk of a credential-related security incident.
+
+With SSO, you only need to remember one ID and one password.
+
+### Connecting On-prem AD with Azure AD
+
+Connecting the two will provide a consistent identity experience to your users.
+
+Azure AD Connect can be used to connect the two ADs. It synchronises changes between both identity systems, so that you can use features like SSO, multifactor authentication, and self-service password reset under both systems.
+
+## Multifactor authentication and Conditional Access
+
+### Multifactor authentication
+
+#### What is Multifactor
+
+Multifactor authentication is a process where a user is prompted during the sign-in process for an additional form of identification. Examples include a code on their mobile phone or a fingerprint scan.
+
+Additional elements of ID include:
+
+- Somthing the user knows - Maybe an email address and password
+- Something the user has - Maybe a code that's sent to the users phone
+- Something the user is - Typically a biometric property such as a fingerprint or face scan
+
+Multifactor authentication increases identity security by limiting the impact of credential exposure (for example, stolen usernames and passwords). With multifactor authentication enabled, an attacker who has a user's password would also need to have possession of their phone or their fingerprint to fully authenticate.
+
+#### Azure AD Multi-factor Authentication
+
+A Microsoft service that provides multifactor authentication capabilities.
+
+### Conditional Access
+
+#### What is Conditional Access?
+
+Conditional Access is a tool that Azure Active Directory uses to allow (or deny) access to resources based on identity signals. These signals include who the user is, where the user is, and what device the user is requesting access from.
+
+Conditional Access also provides a more granular multifactor authentication experience for users. For example, a user might not be challenged for second authentication factor if they're at a known location. However, they might be challenged for a second authentication factor if their sign-in signals are unusual or they're at an unexpected location.
+
+#### When to use Conditional Access
+
+Useful when you need to:
+
+- Require multifactor authentication to access an application
+- Require access to services only through approved client applications
+- Require users to access your application only from managed devices
+- Block access from untrusted sources, such as access from unknown or unexpected locations
+
+#### Where is Conditional Access available?
+
+To use CA you need an Azure AD Premium P1 or P2 license. If you have a Microsoft 365 Business Premium license, you also have access to Condictional Access features.
+
+---
+
+# Build a cloud governance strategy on Azure
+
+## Azure role-based access control
+
+Instead of defining the detailed access requirements for each individual, and then updating access requirements when new resources are created, Azure enables you to control access through Azure role-based access control (Azure RBAC).
+
+### How is role-based access control applied to resources?
+
+Role-based access control is applied to a scope,  which is a resource or set of resources that this access applies to.
+
+![image](images/role-based-access.png)
+
+Scopes include:
+
+- A management group (a collection of multiple subscriptions).
+- A single subscription.
+- A resource group.
+- A single resource.
+
+When you grant access at a parent scope, those permissions are inherited by all child scopes. For example:
+
+- When you assign the Owner role to a user at the management group scope, that user can manage everything in all subscriptions within the management group.
+- When you assign the Reader role to a group at the subscription scope, the members of that group can view every resource group and resource within the subscription.
+- When you assign the Contributor role to an application at the resource group scope, the application can manage resources of all types within that resource group, but not other resource groups within the subscription.
+
+### When should RBAC be used?
+
+When you need to:
+
+- Allow one user to manage VMs in a subscription and another user to manage virtual networks.
+- Allow a database administrator group to manage SQL databases in a subscription.
+- Allow a user to manage all resources in a resource group, such as virtual machines, websites, and subnets.
+- Allow an application to access all resources in a resource group.
+
+### How is Azure RBAC enforced?
+
+Azure RBAC is enforced on any action that's initiated against an Azure resource that passes through Azure Resource Manager.
+
+### Who does Azure RBAC apply to?
+
+You can apply Azure RBAC to an individual person or to a group. You can also apply Azure RBAC to other special identity types, such as service principals and managed identities. These identity types are used by applications and services to automate access to Azure resources.
+
+### How do I manage Azure RBAC permissions?
+
+You manage access permissions on the Access control (IAM) pane in the Azure portal. This pane shows who has access to what scope and what roles apply. You can also grant or remove access from this pane.
+
+The following screenshot shows an example of the Access control (IAM) pane for a resource group.
+
+![image](images/rbac-permissions.png)
+
+## Resource locks
+
+A resource lock prevents resources from being accidentally deleted or changed.
+
+Even with Azure role-based access control (Azure RBAC) policies in place, there's still a risk that people with the right level of access could delete critical cloud resources. Think of a resource lock as a warning system that reminds you that a resource should not be deleted or changed.
+
+### Managing resource locks
+
+You can manage resource locks from the Azure portal, PowerShell, the Azure CLI, or from an Azure Resource Manager template.
+
+To view, add, or delete locks in the Azure portal, go to the Settings section of any resource's Settings pane in the Azure portal.
+
+![image](images/resource-locks.png)
+
+### Locking levels
+
+Locks can be applied to a subsription, a resource group, or an indivudual resource.
+
+- `CanNotDelete` means authorized people can still read and modify a resource, but they can't delete the resource without first removing the lock.
+- `ReadOnly` means authorized people can read a resource, but they can't delete or change the resource. Applying this lock is like restricting all authorized users to the permissions granted by the Reader role in Azure RBAC.
+
+### Deleting or changing a locked resource
+
+To modify a locked resource, you must first remove the lock. After you remove the lock, you can apply any action you have permissions to perform. This additional step allows the action to be taken, but it helps protect your administrators from doing something they might not have intended to do.
+
+Resource locks apply regardless of RBAC permissions. Even if you're an owner of the resource, you must still remove the lock before you can perform the blocked activity.
+
+### Combining resource locks with Azure Blueprints
+
+To make the protection process more robust, you can combine resource locks with Azure Blueprints. Azure Blueprints enables you to define the set of standard Azure resources that your organization requires. For example, you can define a blueprint that specifies that a certain resource lock must exist. Azure Blueprints can automatically replace the resource lock if that lock is removed.
+
+## Organising resources by using tags
+
+As your cloud usage grows, it's increasingly important to stay organized. A good organization strategy helps you understand your cloud usage and can help you manage costs.
+
+### Tag Usage
+
+One way to organize related resources is to place them in their own subscriptions. You can also use resource groups to manage related resources. Resource tags are another way to organize resources. Tags provide extra information, or metadata, about your resources. This metadata is useful for:
+
+- Resource management: Tags enable you to locate and act on resources that are associated with specific workloads, environments, business units, and owners.
+- Cost management and optimization: Tags enable you to group resources so that you can report on costs, allocate internal cost centers, track budgets, and forecast estimated cost.
+- Operations management: Tags enable you to group resources according to how critical their availability is to your business. This grouping helps you formulate service-level agreements (SLAs). An SLA is an uptime or performance guarantee between you and your users.
+- Security: Tags enable you to classify data by its security level, such as public or confidential.
+- Governance and regulatory compliance: Tags enable you to identify resources that align with governance or regulatory compliance requirements, such as ISO 27001. Tags can also be part of your standards enforcement efforts. For example, you might require that all resources be tagged with an owner or department name.
+- Workload optimization and automation: Tags can help you visualize all of the resources that participate in complex deployments. For example, you might tag a resource with its associated workload or application name and use software such as Azure DevOps to perform automated tasks on those resources.
+
+### Managing tags
+
+You can add, modify, or delete resource tags through PowerShell, the Azure CLI, Azure Resource Manager templates, the REST API, or the Azure portal.
+
+You can also manage tags by using Azure Policy. For example, you can apply tags to a resource group, but those tags aren't automatically applied to the resources within that resource group. You can use Azure Policy to ensure that a resource inherits the same tags as its parent resource group.
+
+## Azure Policy
+
+Azure Policy is a service in Azure that enables you to create, assign, and manage policies that control or audit your resources. These policies enforce different rules across all of your resource configurations so that those configurations stay compliant with corporate standards.
+
+With Azure Policies you can define individual policies and groups of policies called initiatives
+
+Azure Policy evaluates your resources and highlights resources that aren't compliant with the policies you've created. Azure Policy can also prevent noncompliant resources from being created.
+
+### Azure Policy in action
+
+1. Create a policy definition
+   - A policy definition expresses what to evaluate and what action to take.
+
+<br>
+
+2. Assign the definition to resources
+   - A policy assignment is a policy definition that takes place within a specific scope. This scope could be a management group (a collection of multiple subscriptions), a single subscription, or a resource group.
+   - Policy assignments are inherited by all child resources within that     scope. If a policy is applied to a resource group, that policy is applied to all resources within that resource group. You can exclude a subscope from the policy assignment if there are specific child resources you need to be exempt from the policy assignment.
+
+<br>
+
+3. Review the evaluation results
+   - When a condition is evaluated against your existing resources, each resource is marked as compliant or noncompliant. You can review the noncompliant policy results and take any action that's needed.
+   - Policy evaluation happens about once per hour. If you make changes to your policy definition and create a policy assignment, that policy is evaluated over your resources within the hour.
+
+<br>
+
+### Azure Policy initiatives
+
+An Azure Policy initiative is a way of grouping related policies together. The initiative definition contains all of the policy definitions to help track your compliance state for a larger goal.
+
+Azure policy includes initiatives that support regulatory compliance standards, such as HIPAA and ISO 27001.
+
+## Azure Blueprints
+
+With Azure Blueprints you can define a repeatable set of governance tools and standard Azure resources that your organization requires.
+This allows development teams to rapidly build and deploy new environments with the knowledge that they're building within organizational compliance with a set of built-in components that speed the development and deployment phases.
+
+Azure Blueprints orchestrates the deployment of various resource templates and other artifacts, such as:
+
+- Role assignments
+- Policy assignments
+- Azure Resource Manager templates
+- Resource groups
+
+Each component in a blueprint definition is known as an artifact. Artifacts can have additional parameters that you can configure.
+
+## Cloud Adoption Framework for Azure
+
+![image](images/cloud-adoption-framework.png)
+
+Define your strategy
+
+- Define and document your motivations
+- Doument your business outcomes
+- Evaluate financial considerations
+- Understand technical considerations
+
+Make a plan
+
+- Create an inventory of the existing digital assets and workloads that you plan to migrate to the cloud
+- Ensure that the right people are involved in your migration efforts
+- Build a plan that helps individuals build the skills they need to operate in the cloud
+- Build a comprehensive plan that brings together the development, operations, and business teams toward a shared cloud adoption goal
+
+Ready your organisation
+
+- Review the Azure setup guide to become familiar with the tools and approaches you need to use to create a landing zone
+- Begin to build out the Azure subscriptions that support each of the major areas of your business. A landing zone includes cloud infrastructure as well as governance, accounting, and security capabilities
+- Refine your landing zone to ensure that it meets your operations, governance, and security needs
+- Start with recommended and proven practices to help ensure that your cloud migration efforts are scalable and maintainable
+
+Migrate
+
+-  Use the Azure migration guide to deploy your first project to the cloud
+-  Use additional in-depth guides to explore more complex migration scenarios
+-  Check in with the Azure cloud migration best practices checklist to verify that you're following recommended practices
+-  Identify ways to make the migration process scale while requiring less effort
+
+Innovate
+
+- Verify that investments in new innovations add value to the business and meet customer needs
+- Use this guide to accelerate development and build a minimum viable product (MVP) for your idea
+- Verify that your progress maps to recommended practices before you move forward
+- Check in frequently with your customers to verify that you're building what they need
+
+Govern
+
+- Consider your end state solution. Then define a methodology that incrementally takes you from your first steps all the way to full cloud governance
+- Use the [governance benchmark tool](https://cafbaseline.com/) to assess your current state and future state to establish a vision for applying the framework
+- Create an MVP that captures the first steps of your governance plan
+- Iteratively add governance controls that address tangible risks as you progress toward your end state solution
+
+Manage
+
+- Define your minimum commitment to operations management. A management baseline is the minimum set of tools and processes that should be applied to every asset in an environment
+- Document supported workloads to establish operational commitments with the business and agree on cloud management investments for each workload
+- Apply recommended best practices to iterate on your initial management baseline
+- For workloads that require a higher level of business commitment, perform a deeper architecture review to deliver on your resiliency and reliability commitments
+
+##  Create a subscription governance strategy
+
+Teams often start their Azure governance strategy at the subscription level. There are three main aspects to consider when you create and manage subscriptions: billing, access control, and subscription limits.
+
+### Billing
+
+You can create one billing report per subscription. If you have multiple departments and need to do a "chargeback" of cloud costs, one possible solution is to organize subscriptions by department or by project.
+
+Resource tags can also help. You'll explore tags later in this module. When you define how many subscriptions you need and what to name them, take into account your internal billing requirements.
+
+### Access control
+
+A subscription is a deployment boundary for Azure resources. Every subscription is associated with an Azure Active Directory tenant. Each tenant provides administrators the ability to set granular access through defined roles by using Azure role-based access control.
+
+When you design your subscription architecture, consider the deployment boundary factor. For example, do you need separate subscriptions for development and for production environments? With separate subscriptions, you can control access to each one separately and isolate their resources from one another.
+
+### Subscription limits
+
+Subscriptions also have some resource limitations. For example, the maximum number of network Azure ExpressRoute circuits per subscription is 10. Those limits should be considered during your design phase. If you'll need to exceed those limits, you might need to add more subscriptions. If you hit a hard limit maximum, there's no flexibility to increase it.
+
+Management groups are also available to assist with managing subscriptions. A management group manages access, policies, and compliance across multiple Azure subscriptions. You'll learn more about management groups later in this module.
+
+---
+
+# Examine privacy, compliance, and data protection standards on Azure
+
+https://docs.microsoft.com/en-gb/learn/modules/examine-privacy-compliance-data-protection-standards/
+
+The following image shows some of the more popular compliance offerings that are available on Azure
+
+![image](images/compliance-matrix.png)
+
+[Microsoft Privacy Statement](https://privacy.microsoft.com/privacystatement)
+
+The [Trust Center](https://www.microsoft.com/trust-center?rtc=1%3Fazure-portal%3Dtrue) showcases Microsoft's principles for maintaining data integrity in the cloud and how Microsoft implements and supports security, privacy, compliance, and transparency in all Microsoft cloud products and services
+
+The [Azure compliance documentation](https://docs.microsoft.com/en-us/azure/compliance/) provides you with detailed documentation about legal and regulatory standards and compliance on Azure.
+
+[Azure Government](https://azure.microsoft.com/global-infrastructure/government) is a separate instance of the Microsoft Azure service. It addresses the security and compliance needs of US federal agencies, state and local governments, and their solution providers. Azure Government offers physical isolation from non-US government deployments and provides screened US personnel.
+
+[Azure China 21Vianet](https://docs.microsoft.com/en-us/azure/china) is operated by 21Vianet. It's a physically separated instance of cloud services located in China.
+
+---
+
+# Describe Azure cost management and service level agreements
+
+## Plan and manage your Azure costs
+
+### Compare costs by using the Total Cost of Ownership Calculator
+
+The [TCO Calculator](https://azure.microsoft.com/pricing/tco/calculator) helps you estimate the cost savings of operating your solution on Azure over time, instead of in your on-premises datacenter.
+
+With the TCO Calculator, you enter the details of your on-premises workloads. Then you review the suggested industry average cost (which you can adjust) for related operational costs. These costs include electricity, network maintenance, and IT labor. You're then presented with a side-by-side report. Using the report, you can compare those costs with the same workloads running on Azure.
+
+#### How does the TCO Calculator work?
+
+1. Define your workloads
+   - Servers
+   - Databases
+   - Storage
+   - Networking
+
+<br>
+
+2. Adjust assumptions
+   - Specify whether your current on-premises licenses are enrolled for Software Assurance, which can save you money by reusing those licenses on Azure.
+   - Specify whether you need to replicate your storage to another Azure region for greater redundancy.
+   - Adjust assumed values for electricity, IT admin pay and network maintenance cost.
+
+<br>
+
+3. View the report
+
+### Purchase Azure services
+
+#### Types of Azure services
+
+- Free trial
+- Pay-as-you-go
+- Member offers
+
+#### Factors that affect cost
+
+- Resource type
+- Usage meters,
+  - Overall CPU time
+  - time spent with a public IP
+  - Incoming and outgoing network traffic
+  - Disk size and amount of disk read and write operations
+- Resource usage
+- Azure subscription types
+  - Some subscription types include allowances
+- Azure Marketplace
+- Location
+- Zones for billing network traffic
+
+#### Estimate workload cost by using the pricing calculator
+
+[Pricing calculator](https://azure.microsoft.com/pricing/calculator/)
