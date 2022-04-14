@@ -84,6 +84,41 @@
   - [Azure Advisor](#azure-advisor)
   - [Azure Monitor](#azure-monitor)
   - [Azure Service Health](#azure-service-health)
+- [Protect against threats on Azure](#protect-against-threats-on-azure)
+  - [Azure Security Center](#azure-security-center)
+    - [Secure score](#secure-score)
+    - [Features](#features)
+    - [Responding to security alerts](#responding-to-security-alerts)
+  - [Azure Sentinel](#azure-sentinel)
+    - [Capabilities](#capabilities)
+    - [Data sources](#data-sources)
+    - [Detect threats](#detect-threats)
+    - [Investigate and respond](#investigate-and-respond)
+  - [Azure Key Vault](#azure-key-vault)
+    - [Azure Key Vault can help you:](#azure-key-vault-can-help-you)
+    - [Benefits](#benefits)
+  - [Azure Dedicated Host](#azure-dedicated-host)
+    - [Benifits](#benifits)
+    - [Pricing](#pricing)
+- [Secure network connectivity on Azure](#secure-network-connectivity-on-azure)
+  - [What defense in depth?](#what-defense-in-depth)
+    - [Layers of defense in depth](#layers-of-defense-in-depth)
+    - [Security Posture](#security-posture)
+  - [Azure Firewall](#azure-firewall)
+  - [Azure DDoS Protection](#azure-ddos-protection)
+    - [DDoS Attacks](#ddos-attacks)
+    - [What is Azure DDoS protection?](#what-is-azure-ddos-protection)
+    - [Service Tiers](#service-tiers)
+    - [What kinds of attacks can DDoS Protection help prevent?](#what-kinds-of-attacks-can-ddos-protection-help-prevent)
+  - [Network Security groups](#network-security-groups)
+- [Secure access to your applications using Azure identity services](#secure-access-to-your-applications-using-azure-identity-services)
+  - [Compare authentication and authorisation](#compare-authentication-and-authorisation)
+    - [What is authentication?](#what-is-authentication)
+    - [What is authorisation?](#what-is-authorisation)
+  - [Azure Active Directory](#azure-active-directory)
+    - [What is Active Directory?](#what-is-active-directory)
+    - [What is Azure Active Directory?](#what-is-azure-active-directory)
+    - [What services does Azure AD provide?](#what-services-does-azure-ad-provide)
 
 ---
 
@@ -943,4 +978,245 @@ Using custom analytics:
 
 Using the `Investigation graph` you can review information from entities directly connected to an alert, and see common exploration queries to help guide the investigation.
 
-![image](https://docs.microsoft.com/en-us/learn/azure-fundamentals/protect-against-security-threats-azure/media/3-investigate-incidents-54765923.png)
+![image](images/investigation-graph.png)
+
+Using `Azure Monitor Workbooks` you can automate responses to threats. It can set an alert that looks for malicious IP addresses that access the network and create a workbook that does the following steps:
+
+- When the slert is trggered, open a .ticket in the IT ticketing system
+- Send a message to the security operations channel in Microsoft Teams or Slack to make sure the security analysts are aware of the incident
+- Send all of the information in the alert to the senior network admin and to the security admin. The email message includes two user option buttons: Block and Ignore.
+
+Block: the IP address is blocked in the firewall, and the user is disabled in Azure Active Directory
+
+Ignore: the alert is closed in Azure Sentinel, and the incident is closed in the IT ticketing system
+
+## Azure Key Vault
+
+Azure Key Vault is a centralized cloud service for storing an application's secrets in a single, central location. It provides secure access to sensitive information by providing access control and logging capabilities.
+
+### Azure Key Vault can help you:
+
+- Manage secrets You can use Key Vault to securely store and tightly control access to tokens, passwords, certificates, API keys, and other secrets.
+- Manage encryption keys You can use Key Vault as a key management solution. Key Vault makes it easier to create and control the encryption keys that are used to encrypt your data.
+- Manage SSL/TLS certificates Key Vault enables you to provision, manage, and deploy your public and private Secure Sockets Layer/Transport Layer Security (SSL/TLS) certificates for both your Azure resources and your internal resources.
+- Store secrets backed by hardware security modules (HSMs) These secrets and keys can be protected either by software or by FIPS 140-2 Level 2 validated HSMs.
+
+### Benefits
+
+-  Centralized application secrets Centralizing the storage for your application secrets enables you to control their distribution, and reduces the chances that secrets are accidentally leaked.
+Securely stored secrets and keys Azure uses industry-standard algorithms, key lengths, and HSMs. Access to Key Vault requires proper authentication and authorization.
+- Access monitoring and access control By using Key Vault, you can monitor and control access to your application secrets.
+- Simplified administration of application secrets Key Vault makes it easier to enroll and renew certificates from public certificate authorities (CAs). You can also scale up and replicate content within regions and use standard certificate management tools.
+- Integration with other Azure services You can integrate Key Vault with storage accounts, container registries, event hubs, and many more Azure services. These services can then securely reference the secrets stored in Key Vault.
+
+## Azure Dedicated Host
+
+On Azure, standard virtual machines run on shared hardware that Microsoft manages. Some organisations must follw regulatory compliance that requires them to be the only customer using the physical machine that hosts thier VMs. 
+
+Azure Dedicated Host provides dedicated physical servers to host your Azure VMs for Windows and Linux.
+
+### Benifits
+
+- Gives you visibility into, and control over, the server infrastructure that's running your Azure VMs.
+- Helps address compliance requirements by deploying your workloads on an isolated server.
+- Lets you choose the number of processors, server capabilities, VM series, and VM sizes within the same host.
+
+### Pricing
+
+You're charged per dedicated host, independent of how many VMs you deploy to it. The host price is based on the VM family, type (hardware size), and region.
+
+---
+
+# Secure network connectivity on Azure
+
+## What defense in depth?
+
+### Layers of defense in depth
+
+You can visualize defense in depth as a set of layers, with the data to be secured at the center.
+
+![image](images/defense-depth.png)
+
+Each layer provides protection so that if one layer is breached, a subsequent layer is already in place to prevent further exposure.
+
+- The physical security layer is the first line of defense to protect computing hardware in the datacenter.
+  - Physically securing access to buildings and controlling access to computing hardware.
+- The identity and access layer controls access to infrastructure and change control.
+  - About ensuring that identities are secure
+    - Control access to infrastructure and change control.
+    - Use single sign-on (SSO) and multifactor authentication.
+    - Audit events and changes.
+- The perimeter layer uses distributed denial of service (DDoS) protection to filter large-scale attacks before they can cause a denial of service for users.
+  - About protecting from network-based attacks against your resources.
+    - Use DDoS protection to filter large-scale attacks before they can affect the availability of a system for users.
+    - Use perimeter firewalls to identify and alert on malicious attacks against your network.
+- The network layer limits communication between resources through segmentation and access controls.
+  - The focus is on limiting the network connectivity across all your resources to allow only what's required
+    - Limit communication between resources.
+    - Deny by default.
+    - Restrict inbound internet access and limit outbound access where appropriate.
+    - Implement secure connectivity to on-premises networks.
+- The compute layer secures access to virtual machines.
+  - The focus in this layer is on making sure that your compute resources are secure and that you have the proper controls in place to minimize security issues.
+    - Secure access to virtual machines.
+    - Implement endpoint protection on devices and keep systems patched and current.
+- The application layer helps ensure that applications are secure and free of security vulnerabilities.
+  - Ensure that applications are secure and free of vulnerabilities.
+  - Store sensitive application secrets in a secure storage medium.
+  - Make security a design requirement for all application development.
+- The data layer controls access to business and customer data that you need to protect.
+  - In almost all cases, attackers are after data:
+    - Stored in a database.
+    - Stored on disk inside virtual machines.
+    - Stored in software as a service (SaaS) applications, such as Office 365.
+    - Managed through cloud storage.
+
+### Security Posture
+
+Your security posture is your organization's ability to protect from and respond to security threats. The common principles used to define a security posture are confidentiality, integrity, and availability, known collectively as CIA.
+
+Confidentiality
+
+    The principle of least privilege means restricting access to information only to individuals explicitly granted access, at only the level that they need to perform their work. This information includes protection of user passwords, email content, and access levels to applications and underlying infrastructure.
+
+Integrity
+
+    Prevent unauthorized changes to information:
+    - At rest: when it's stored.
+    - In transit: when it's being transferred from one place to another, including from a local computer to the cloud.
+
+    A common approach used in data transmission is for the sender to create a unique fingerprint of the data by using a one-way hashing algorithm. The hash is sent to the receiver along with the data. The receiver recalculates the data's hash and compares it to the original to ensure that the data wasn't lost or modified in transit.
+
+Availability
+
+    Ensure that services are functioning and can be accessed only by authorized users. Denial-of-service attacks are designed to degrade the availability of a system, affecting its users.
+
+## Azure Firewall
+
+Azure Firewall is a managed, cloud-based network security service that helps protect resources in your Azure virtual networks. A virtual network is similar to a traditional network that you'd operate in your own datacenter. It's a fundamental building block for your private network that enables virtual machines and other compute resources to securely communicate with each other, the internet, and on-premises networks.
+
+Azure Firewall is a statefull firewall. A statefull firewall analyses the complete context of a network connection, not just an individual packet of network traffic.
+
+Azure Firewall provides many features, including:
+
+- Built-in high availability.
+- Unrestricted cloud scalability.
+- Inbound and outbound filtering rules.
+- Inbound Destination Network Address Translation (DNAT) support.
+- Azure Monitor logging.
+
+With Azure Firewall you can configure:
+
+- Application rules that define fully qualified domain names (FQDNs) that can be accessed from a subnet.
+- Network rules that define source address, protocol, destination port, and destination address.
+- Network Address Translation (NAT) rules that define destination IP addresses and ports to translate inbound requests.
+
+## Azure DDoS Protection
+
+### DDoS Attacks
+
+A distributed denial of service attack attempts to overwhelm and exhaust an application's resources, making the application slow or unresponsive to legitimate users. DDoS attacks can target any resource that's publicly reachable through the internet, including websites.
+
+### What is Azure DDoS protection?
+
+Azure DDoS Protection (Standard) helps protect your Azure resources from DDoS attacks.
+
+DDoS Protection identifies the attacker's attempt to overwhelm the network and blocks further traffic from them, ensuring that traffic never reaches Azure resources.
+
+DDoS Protection can also help you manage your cloud consumption. A cleverly designed DDoS attack can cause you to increase your resource allocation, which incurs unneeded expense.
+
+### Service Tiers
+
+Basic
+
+- The Basic service tier is automatically enabled for free as part of your Azure subscription
+- Always-on traffic monitoring and real-time mitigation of common network-level attacks provide the same defenses that Microsoft's online services use
+
+Standard
+
+- Provides additional mitigation capabilities that are tuned specifically to Azure Virtual Network resources
+
+### What kinds of attacks can DDoS Protection help prevent?
+
+The Standard service tier can help prevent:
+
+- Volumetric attacks
+  
+  The goal of this attack is to flood the network layer with a substantial amount of seemingly legitimate traffic.
+
+- Protocol attacks
+  
+  These attacks render a target inaccessible by exploiting a weakness in the layer 3 and layer 4 protocol stack.
+
+- Resource-layer (application-layer) attacks (only with web application firewall)
+  
+  These attacks target web application packets to disrupt the transmission of data between hosts. You need a web application firewall (WAF) to protect against L7 attacks. DDoS Protection Standard protects the WAF from volumetric and protocol attacks.
+
+## Network Security groups
+
+A network security group enables you to filter network traffic to and from Azure resources within an Azure virtual network. You can think of NSGs like an internal firewall. An NSG can contain multiple inbound and outbound security rules that enable you to filter traffic to and from resources by source and destination IP address, port, and protocol.
+
+Each rule specifies these properties:
+
+- Name - A unique name for the NSG
+- Priority - A number between 100 and 4096. Rules are processed in priority order, with lower numbers processed first
+- Source or destination - A single IP address or IP address range, service tag, or application security group
+- Protocol - TCP, USP, or Any
+- Direction - Whether the rule applies to inbound or outbound traffic
+- Port Range A single port or range of ports
+- Action - Allow or Deny
+
+When you create a network security group, Azure creates a series of default rules to provide a baseline level of security. You cant remove the default rules, but you can override them by creating new rules with higher priorities.
+
+---
+
+# Secure access to your applications using Azure identity services
+
+## Compare authentication and authorisation
+
+### What is authentication?
+
+The process of establishing the identity of a person or service that wants to access a resource. It involves chanllenging a party for legitimate credentials and provides the basis for creating a security principal for identity and access control. It establishes whether the user is who they say they are.
+
+### What is authorisation?
+
+Authentication establishes the user's identity, but authorisation is the process of establishing what level of access an authenticated person or service has. It specifies what data they're allowed to access and what they can do with it.
+
+![image](images/authentication-vs-authorisation.png)
+
+The identification card represents credentials that the user has to prove their identity (you'll learn more about the types of credentials later in this module.) Once authenticated, authorization defines what kinds of applications, resources, and data that user can access.
+
+## Azure Active Directory
+
+### What is Active Directory?
+
+Gives organisations the ablility to manage on-premises infrastructure components and systems by using a single identity per user. Provides an identity and access managment service thats managed by your own organisation.
+
+### What is Azure Active Directory?
+
+Microsofts cloud-based identity and access managment service. With Azure AD, you can control the identity accounts, but Microsoft ensures that the service is available globally.
+
+Azure AD is for:
+
+- IT administrators
+  - Control access to applications and resources based on their business requirements
+- App developers
+  - Provide a standards-based PPROch for adding functionality to applications that they build, sush as adding SSO functionality to an app or enabling an app to work with a users existing credentials.
+- Users
+  - Users can manage their identities. For example, self-service password reset enables users to change or reset their password with no involvment from an IT administrator or help desk.
+- Online service subscribers
+  - Microsoft 365, Microsoft Office 365, Azure, and Microsoft Dynamics CRM Online subscribers are already using Azure AD.
+  - A tenant is a representation of an organization. A tenant is typically separated from other tenants and has its own identity. Each Microsoft 365, Office 365, Azure, and Dynamics CRM Online tenant is automatically an Azure AD tenant.
+
+### What services does Azure AD provide?
+
+Authentication
+
+- Varifying identity to access applications and resources
+- Provides functionality such as self-service password reset, multifactor authentication, a custom list of banned passwords, and smart lockout
+- services
+
+Single sign-on (SSO)
+
+- Enables you to remember only one username and one password to access multiple applications
+- A single identity is tied to a user
