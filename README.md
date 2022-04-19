@@ -163,6 +163,19 @@
       - [Types of Azure services](#types-of-azure-services)
       - [Factors that affect cost](#factors-that-affect-cost)
       - [Estimate workload cost by using the pricing calculator](#estimate-workload-cost-by-using-the-pricing-calculator)
+    - [Manage and minimise total cost on Azure](#manage-and-minimise-total-cost-on-azure)
+      - [Recomended Practices](#recomended-practices)
+  - [Choose the right Azure services by examining SLAs and service lifecycle](#choose-the-right-azure-services-by-examining-slas-and-service-lifecycle)
+    - [Importance of SLAs](#importance-of-slas)
+    - [Define your applicatiopn SLA](#define-your-applicatiopn-sla)
+      - [Business Impact](#business-impact)
+      - [Effect on other Business operations](#effect-on-other-business-operations)
+      - [Usage Patterns](#usage-patterns)
+    - [Design your application to meet your SLA](#design-your-application-to-meet-your-sla)
+      - [Identify your workloads](#identify-your-workloads)
+      - [Combine SLAs to compute the composite SLA](#combine-slas-to-compute-the-composite-sla)
+      - [What happens when the composite SLA doesn't meet your needs?](#what-happens-when-the-composite-sla-doesnt-meet-your-needs)
+    - [Azure Preview Services and Features](#azure-preview-services-and-features)
 
 ---
 
@@ -1644,3 +1657,106 @@ With the TCO Calculator, you enter the details of your on-premises workloads. Th
 #### Estimate workload cost by using the pricing calculator
 
 [Pricing calculator](https://azure.microsoft.com/pricing/calculator/)
+
+### Manage and minimise total cost on Azure
+
+#### Recomended Practices
+
+- Undeerstand estimated costs before you deploy
+  - Pricing calculator
+- Use Azure Advisor to monitor your usage
+- Use Spending limits to restrict your spending
+- Use Azure Reservations to prepay
+  - Offers discounted prices on certain Azure Services
+  - Can save up to 72% compared to pay-as-you-go
+- Choose low-cost locations and regions
+- Research available cost-saving offers
+- Use Azure Cost Management and Billing to control spending
+  - A free service that helps you understand your Azure bill, manage your account and subscriptions, monitor and control Azure spending, and optimize resource use
+- Apply tags to identify cost owners
+- Resize underutilised virtual machines
+- Deallocate virtual machines during off hours
+- Delete unused resources
+- Migrate from IaaS to PaaS services
+- Save on licensing costs
+  - Choose cost-effective operating systems
+  - Use Azure Hybrid Benefit to repurpose osftware licenses on Azure
+
+## Choose the right Azure services by examining SLAs and service lifecycle
+
+SLA: The formal agreement between a service company and the customer that guarantees the customer a stated level of service
+
+[Azure SLAs](https://azure.microsoft.com/en-gb/support/legal/sla/)
+
+Free services typically dont have an SLA
+
+Knowing when there is an outage: [Azuer Status](https://status.azure.com/status) provides a global view of the health of Azure Services
+
+### Importance of SLAs
+
+They help you to understand what guaranteees you can expect. When building an application on Azure the availability of the services that are needed affect the applications performance. Understanding the SLAs invlved can help establish the SLA for the customers of your application.
+
+### Define your applicatiopn SLA
+
+#### Business Impact
+
+If an specific application goes down what would the business impact be?
+
+#### Effect on other Business operations
+
+#### Usage Patterns
+
+Usage Patterns define when and how useres access your application
+
+It's important to consider if the availability requirement differs between critical and non-critical time periods.
+For example a tax-filing application can't fail diring a filing dealine.
+
+### Design your application to meet your SLA
+
+#### Identify your workloads
+
+A Workload: A distict capability or task that's logically seperated from other tasks, in terms of business logic and data storage requirments.
+
+Each Workload defines a set of requirments for availability, scalability, data consistency, and disaster recorvery.
+
+#### Combine SLAs to compute the composite SLA
+
+To get the composite SLA, SLAs need to be multiplied together.
+
+SLA x SLA x SLA = Composite SLA
+
+<br>
+
+For example:
+
+- Azure Virtual Machines = 99.9%
+- Azure SQL Database = 99.99%
+- Azure Load Balancer = 99.99%
+
+Two Virtual Machines are needed so the virtual machine SLA will be included twice.
+
+99.9% x  99.9% x 99.99% x 99.99%
+
+0.999 x 0.999 x 0.9999 x 0.9999 = 0.9978
+
+Composite SLA = 99.78%
+
+#### What happens when the composite SLA doesn't meet your needs?
+
+Build availability requirements into your design
+
+- Instead of adding more virtual machines, you can deploy one or more extra instances of the same virtual machine across the different availability zones in the same Azure region (different availability zones use different schedules for maintanence)
+- Deploying two or more instances of an Azure virtual machine across two or more availability zones raises the virtual machine SLA to 99.99%
+
+Recalculating the composite SLA with the new virtual machine SLA:
+
+99.99% x 99.99% x 99.99% x 99.99% = 99.96%
+
+<br>
+
+Include Redundancy to increase availability
+- To ensure high availability, you might plan for your application to have duplicate components across several regions
+
+### Azure Preview Services and Features
+
+https://docs.microsoft.com/en-gb/learn/modules/choose-azure-services-sla-lifecycle/5-access-preview-services
