@@ -1,3 +1,5 @@
+**Azure Administrator - AZ 104**
+
 - [Prerequisites for Azure administrators](#prerequisites-for-azure-administrators)
   - [Configure Azure resources with tools](#configure-azure-resources-with-tools)
     - [Azure Portal](#azure-portal)
@@ -239,3 +241,5 @@ You are limited to 256 parameters in a template.
 ### Bicep templates
 
 [Azure Bicep](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview?tabs=bicep) is a domain-specific language (DSL) that uses declarative syntax to deploy Azure resources. It provides concise syntax, reliable type safety, and support for code reuse.
+
+Can be used instead of JSON to develop
